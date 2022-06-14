@@ -1,5 +1,6 @@
-import { ApiSkills } from '.';
-
+/**
+ * Every available endpoint of the API.
+ */
 export enum Endpoints {
 	Create = 'create',
 	Analyse = 'analyse',
@@ -32,13 +33,19 @@ export enum ApiMode {
 	TopK = 'topk',
 }
 
-/**
- *
- */
-export interface ApiRequest {
-	/**
-	 * The input(s) that will be used by the model for generation, also known as the prompt.
-	 * They can be provided either as a single string or as an array of strings for [batch processing](https://muse-docs.lighton.ai/api/specifications/requests#batching).
-	 */
-	text: string | string[];
+export enum ApiModels {
+	OrionFr = 'orion-fr',
+	LyraFr = 'lyra-fr',
+	OrionEn = 'orion-en',
+	LyraEn = 'lyra-en',
+	AurigaDe = 'auriga-de',
+	AurigaEs = 'auriga-es',
+	AurigaIt = 'auriga-it',
+}
+
+export enum ApiSkills {
+	OrionFrSummarisation = 'orion-fr@summarisation',
+	LyraEnMultitask = 'lyra-en@multitask',
+	AurigaDeZusammenfassung = 'auriga-de@zusammenfassung',
+	AurigaEsResumen = 'auriga-es@resumen',
 }
