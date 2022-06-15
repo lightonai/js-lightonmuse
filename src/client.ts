@@ -1,61 +1,35 @@
 import fetch, { Response } from 'node-fetch';
 import { ApiRequestOptions, ApiResponse } from './endpoints';
 import { ApiModels, Endpoints } from './requests';
+import { isApiResponseBadRequest, isApiResponseError } from './responses';
 
 export class MuseRequest {
-	// IDEA: model param in post function func
-	constructor(private apiKey: string, checkApiKey = false) {
-		if (!checkApiKey) {
-			console.warn(
-				`
-Initializing MuseRequest without checking API key is not recommended.
-You might want to use use the new() function instead :
-const client = await MuseRequest.new(process.env.MUSE_API_KEY);
-`
-			);
-		}
-	}
+	constructor(private apiKey: string) {}
 
-	public static async new(apiKey: string): Promise<MuseRequest | null> {
-		let requester = new MuseRequest(apiKey, true);
-
-		let response = await requester.raw(
-			ApiModels.OrionFr,
-			Endpoints.Tokenize,
-			{
-				text: 'Hello world!',
-			}
-		);
-
-		// Don't hand the requester back if the api key is invalid
-		if (response.status === 403) {
-			return null;
-		}
-
-		return requester;
-	}
-
-	public async post<E extends Endpoints>(
+	public async query<E extends Endpoints>(
 		model: ApiModels,
 		endpoint: E,
 		options: ApiRequestOptions<E>
-	): Promise<{ error?: Error; response?: ApiResponse<E> }> {
-		let response = await this.raw(model, endpoint, options);
-
-		// TODO: handle more 4xx and 5xx errors
-		if (response.status === 400)
-			return { error: new Error('Invalid API key') };
-
+	): Promise<
+		| { error: Error; response: null }
+		| { error: null; response: ApiResponse<E> }
+	> {
+		const response = await this.raw(model, endpoint, options);
 		const body = await response.json();
 
-		// TODO: make guard functions for each case
-		// TODO: handle errors in the response
-		// export interface ApiResponseError extends ApiResponseBase {
-		// 	error_msg: string;
-		// }
+		if (response.status !== 200 && isApiResponseBadRequest(body))
+			return { error: new Error(body.details), response: null };
+
+		if (isApiResponseError(body)) {
+			return {
+				error: new Error(`${body.request_id} - ${body.error_msg}`),
+				response: null,
+			};
+		}
 
 		return {
 			response: body as ApiResponse<E>,
+			error: null,
 		};
 	}
 

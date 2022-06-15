@@ -72,3 +72,21 @@ export interface ApiResponseBase<Output> {
 	 */
 	costs: Record<string, ApiModelCosts>;
 }
+
+export interface ApiResponseBadRequest {
+	details: string;
+}
+
+export const isApiResponseBadRequest = (
+	body: unknown
+): body is ApiResponseBadRequest =>
+	typeof (body as ApiResponseBadRequest).details === 'string';
+
+export interface ApiResponseError {
+	request_id: string;
+	error_msg: string;
+}
+
+export const isApiResponseError = (body: unknown): body is ApiResponseError =>
+	typeof (body as ApiResponseError).request_id === 'string' &&
+	typeof (body as ApiResponseError).error_msg === 'string';
