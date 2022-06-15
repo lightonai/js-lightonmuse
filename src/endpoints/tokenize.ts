@@ -1,6 +1,5 @@
 import { ApiExecutionMetadata, ApiResponseBase } from '../responses';
 
-// TODO: no doc page for this endpoint
 export interface ApiTokenizeOptions {
 	/**
 	 * The input(s) that will be used by the model for generation, also known as the prompt.
@@ -10,9 +9,22 @@ export interface ApiTokenizeOptions {
 }
 
 export interface ApiTokenizeOutput {
+	// TODO: does not match the docs
 	execution_metadata: ApiExecutionMetadata;
+
+	/**
+	 * The input `text`.
+	 */
 	text: string;
+
+	/**
+	 * The number of tokens of the input `text`.
+	 */
 	n_tokens: number;
+
+	/**
+	 * An array of tokens of the input `text`.
+	 */
 	tokens: string[];
 }
 

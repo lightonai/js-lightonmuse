@@ -34,7 +34,9 @@ export interface ApiSelectRanking {
 	 */
 	text: string;
 
-	// TODO: does not match the docs
+	/**
+	 * A `Score` structure.
+	 */
 	score: ApiScore;
 }
 

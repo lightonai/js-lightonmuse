@@ -35,6 +35,7 @@ export enum ApiMode {
 
 export enum ApiModels {
 	OrionFr = 'orion-fr',
+	OrionFrV2 = 'orion-fr-v2',
 	LyraFr = 'lyra-fr',
 	OrionEn = 'orion-en',
 	LyraEn = 'lyra-en',

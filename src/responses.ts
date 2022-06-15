@@ -45,13 +45,33 @@ export interface ApiExecutionMetadataCost {
 	batch_size: number;
 }
 
-// TODO: does not match the docs
+/**
+ * Explains why the model stopped processing further tokens
+ */
+export enum ApiFinishReason {
+	/**
+	 * Stopped by `n_tokens` or by reaching the end of the text to process
+	 */
+	Length = 'length',
+
+	/**
+	 * Reached one of the `stop_words`
+	 */
+	StopWord = 'stop_word',
+}
+
+/**
+ * Collects information relevant to the cost and execution of the request.
+ * It is available at the top level, as well as for each individual element of a batch.
+ */
 export interface ApiExecutionMetadata {
-	// TODO: does not match the docs
+	// TODO: document
 	cost: ApiExecutionMetadataCost;
 
-	// TODO: does not match the docs
-	finish_reason: string;
+	/**
+	 * Explains why the model stopped processing further tokens
+	 */
+	finish_reason: ApiFinishReason;
 }
 
 export interface ApiModelCosts {
@@ -62,11 +82,17 @@ export interface ApiModelCosts {
 }
 
 export interface ApiResponseBase<Output> {
-	request_id: string;
 	/**
+	 * A unique identifier of the request
+	 */
+	request_id: string;
+
+	/**
+	 * List containing the model answer to your request, and useful metadata.
 	 * Has the same form than batching request.
 	 */
 	outputs: Output[][];
+
 	/**
 	 * A record with the name of the model and the number of tokens that was used.
 	 */

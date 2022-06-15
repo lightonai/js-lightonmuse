@@ -11,7 +11,6 @@ export interface ApiEmbedOutput {
 	// TODO: does not match the docs
 	execution_metadata: ApiExecutionMetadata;
 
-	// TODO: does not match the docs
 	/**
 	 * The text that was represented, from the provided text parameter.
 	 */

@@ -134,7 +134,7 @@ export interface ApiCreateOptions {
 	 */
 	best_of?: number;
 
-	// TODO
+	// TODO: does not really match the docs
 	params?: ApiCreateParams;
 }
 
@@ -144,8 +144,10 @@ export interface ApiCreateCompletion {
 	 */
 	output_text: string;
 
-	// TODO: does not match the docs
-	scores: ApiScore[];
+	/**
+	 * A `Score` structure.
+	 */
+	score: ApiScore;
 
 	// TODO: does not match the docs
 	execution_metadata: ApiExecutionMetadata;
