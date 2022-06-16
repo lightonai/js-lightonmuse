@@ -4,9 +4,9 @@ import {
 	ApiBatchResponse,
 	ApiRequestOptions,
 	ApiResponse,
-} from './endpoints';
-import { ApiModels, Endpoints } from './requests';
-import { isApiResponseBadRequest, isApiResponseError } from './responses';
+} from './endpoints/index.js';
+import { ApiModels, Endpoints } from './requests.js';
+import { isApiResponseBadRequest, isApiResponseError } from './responses.js';
 
 export type MuseResponse<
 	E extends Endpoints,

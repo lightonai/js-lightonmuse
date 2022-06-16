@@ -65,7 +65,9 @@ export enum ApiFinishReason {
  * It is available at the top level, as well as for each individual element of a batch.
  */
 export interface ApiExecutionMetadata {
-	// TODO: document
+	/**
+	 * The detailed total cost of the request.
+	 */
 	cost: ApiExecutionMetadataCost;
 
 	/**

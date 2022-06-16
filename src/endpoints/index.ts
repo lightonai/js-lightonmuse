@@ -6,9 +6,9 @@ import { ApiEmbedOptions, ApiEmbedResponse } from './embed.js';
 import { ApiSelectOptions, ApiSelectResponse } from './select.js';
 import { ApiTokenizeOptions, ApiTokenizeResponse } from './tokenize.js';
 
-// TODO: Api requests and responses can be arrays for batch processing
-
-// TODO: document
+/**
+ * The options for a specific endpoint.
+ */
 export type ApiRequestOptions<E extends Endpoints> = E extends Endpoints.Create
 	? ApiCreateOptions
 	: E extends Endpoints.Analyse
@@ -26,7 +26,9 @@ export type ApiRequestOptions<E extends Endpoints> = E extends Endpoints.Create
 export type ApiBatchRequestOptions<E extends Endpoints> =
 	ApiRequestOptions<E>[];
 
-// TODO: document
+/**
+ * The response of the API for a specific endpoint.
+ */
 export type ApiResponse<E extends Endpoints> = E extends Endpoints.Create
 	? ApiCreateResponse
 	: E extends Endpoints.Analyse
@@ -41,6 +43,9 @@ export type ApiResponse<E extends Endpoints> = E extends Endpoints.Create
 	? ApiTokenizeResponse
 	: never;
 
+/**
+ * The response to a batch request.
+ */
 export type ApiBatchResponse<E extends Endpoints> = ApiResponse<E>[];
 
 // Re-export api types

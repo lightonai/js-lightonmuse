@@ -1,4 +1,4 @@
-import { ApiExecutionMetadata, ApiResponseBase } from '../responses';
+import { ApiExecutionMetadata, ApiResponseBase } from '../responses.js';
 
 export interface ApiCompareOptions {
 	/**
@@ -40,7 +40,9 @@ export interface ApiCompareOutput {
 	 */
 	best: string;
 
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 }
 

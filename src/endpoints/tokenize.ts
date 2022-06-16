@@ -1,4 +1,4 @@
-import { ApiExecutionMetadata, ApiResponseBase } from '../responses';
+import { ApiExecutionMetadata, ApiResponseBase } from '../responses.js';
 
 export interface ApiTokenizeOptions {
 	/**
@@ -9,7 +9,9 @@ export interface ApiTokenizeOptions {
 }
 
 export interface ApiTokenizeOutput {
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 
 	/**

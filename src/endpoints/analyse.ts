@@ -1,4 +1,8 @@
-import { ApiExecutionMetadata, ApiResponseBase, ApiScore } from '../responses';
+import {
+	ApiExecutionMetadata,
+	ApiResponseBase,
+	ApiScore,
+} from '../responses.js';
 
 export interface ApiAnalyseOptions {
 	/**
@@ -8,7 +12,9 @@ export interface ApiAnalyseOptions {
 }
 
 export interface ApiAnalyseOutput {
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 
 	/**

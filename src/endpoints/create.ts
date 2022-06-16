@@ -1,5 +1,4 @@
-import { ApiSkills } from '../index.js';
-import { ApiMode } from '../requests.js';
+import { ApiMode, ApiSkills } from '../requests.js';
 import {
 	ApiExecutionMetadata,
 	ApiResponseBase,
@@ -134,7 +133,9 @@ export interface ApiCreateOptions {
 	 */
 	best_of?: number;
 
-	// TODO: does not really match the docs
+	/**
+	 * A set of parameters to control the model output.
+	 */
 	params?: ApiCreateParams;
 }
 
@@ -149,7 +150,9 @@ export interface ApiCreateCompletion {
 	 */
 	score: ApiScore;
 
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 }
 

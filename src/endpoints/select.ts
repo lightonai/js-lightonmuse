@@ -1,4 +1,8 @@
-import { ApiExecutionMetadata, ApiResponseBase, ApiScore } from '../responses';
+import {
+	ApiExecutionMetadata,
+	ApiResponseBase,
+	ApiScore,
+} from '../responses.js';
 
 export interface ApiSelectOptions {
 	/**
@@ -56,7 +60,9 @@ export interface ApiSelectOutput {
 	 */
 	best: string;
 
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 }
 

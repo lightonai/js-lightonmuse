@@ -1,4 +1,4 @@
-import { ApiExecutionMetadata, ApiResponseBase } from '../responses';
+import { ApiExecutionMetadata, ApiResponseBase } from '../responses.js';
 
 export interface ApiEmbedOptions {
 	/**
@@ -8,7 +8,9 @@ export interface ApiEmbedOptions {
 }
 
 export interface ApiEmbedOutput {
-	// TODO: does not match the docs
+	/**
+	 * An [Execution metadata](/api/specifications/responses/#execution-metadata) structure.
+	 */
 	execution_metadata: ApiExecutionMetadata;
 
 	/**
