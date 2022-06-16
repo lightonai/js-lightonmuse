@@ -1,4 +1,4 @@
-export { MuseRequest } from './client.js';
+export { MuseRequest, type MuseResponse } from './client.js';
 
 export * from './responses.js';
 export * from './requests.js';

@@ -23,6 +23,9 @@ export type ApiRequestOptions<E extends Endpoints> = E extends Endpoints.Create
 	? ApiTokenizeOptions
 	: never;
 
+export type ApiBatchRequestOptions<E extends Endpoints> =
+	ApiRequestOptions<E>[];
+
 // TODO: document
 export type ApiResponse<E extends Endpoints> = E extends Endpoints.Create
 	? ApiCreateResponse
@@ -37,6 +40,8 @@ export type ApiResponse<E extends Endpoints> = E extends Endpoints.Create
 	: E extends Endpoints.Tokenize
 	? ApiTokenizeResponse
 	: never;
+
+export type ApiBatchResponse<E extends Endpoints> = ApiResponse<E>[];
 
 // Re-export api types
 export * from './analyse.js';

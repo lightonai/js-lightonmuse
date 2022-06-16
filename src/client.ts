@@ -1,19 +1,32 @@
 import fetch, { Response } from 'node-fetch';
-import { ApiRequestOptions, ApiResponse } from './endpoints';
+import {
+	ApiBatchRequestOptions,
+	ApiBatchResponse,
+	ApiRequestOptions,
+	ApiResponse,
+} from './endpoints';
 import { ApiModels, Endpoints } from './requests';
 import { isApiResponseBadRequest, isApiResponseError } from './responses';
+
+export type MuseResponse<
+	E extends Endpoints,
+	O extends ApiRequestOptions<E> | ApiBatchRequestOptions<E>
+> =
+	| { error: Error; response: null }
+	| {
+			error: null;
+			response: O extends ApiBatchRequestOptions<E>
+				? ApiResponse<E>[]
+				: ApiResponse<E>;
+	  };
 
 export class MuseRequest {
 	constructor(private apiKey: string) {}
 
-	public async query<E extends Endpoints>(
-		model: ApiModels,
-		endpoint: E,
-		options: ApiRequestOptions<E>
-	): Promise<
-		| { error: Error; response: null }
-		| { error: null; response: ApiResponse<E> }
-	> {
+	public async query<
+		E extends Endpoints,
+		O extends ApiRequestOptions<E> | ApiBatchRequestOptions<E>
+	>(model: ApiModels, endpoint: E, options: O): Promise<MuseResponse<E, O>> {
 		const response = await this.raw(model, endpoint, options);
 		const body = await response.json();
 
@@ -28,7 +41,9 @@ export class MuseRequest {
 		}
 
 		return {
-			response: body as ApiResponse<E>,
+			response: body as O extends ApiBatchRequestOptions<E>
+				? ApiBatchResponse<E>
+				: ApiResponse<E>,
 			error: null,
 		};
 	}
@@ -36,7 +51,7 @@ export class MuseRequest {
 	public async raw<E extends Endpoints>(
 		model: ApiModels,
 		endpoint: E,
-		options: ApiRequestOptions<E>
+		options: ApiRequestOptions<E> | ApiBatchRequestOptions<E>
 	): Promise<Response> {
 		const url = `https://api.lighton.ai/muse/v1/${endpoint}`;
 
