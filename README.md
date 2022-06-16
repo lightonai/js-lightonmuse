@@ -31,11 +31,19 @@ npm install lighton-muse
 The library documentation is available at [???](???.lighton.ai).
 Guides and documentation can be found at the [API docs website](https://muse-docs.lighton.ai).
 
+## Examples
+
+You can find more examples in the [repository](https://github.com/lightonai/lightonmuse/blob/master/examples/)
+
+```bash
+yarn build-examples
+# and then
+node examples/<example-name>.js
+```
+
 ## Quickstart
 
-Using `lightonmuse` is pretty simple, the interface matches the endpoints offered by the Muse API.
-
-The whole library is typed.
+Using `lighton-muse` is pretty simple, the interface matches the endpoints offered by the Muse API. The whole library is typed.
 
 You can initialize the client with your token.
 

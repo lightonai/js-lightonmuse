@@ -8,6 +8,7 @@
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"build": "tsup src/index.ts --format esm --dts --target es2020",
+		"build-examples": "tsup examples/*.ts --format esm -d examples --target esnext",
 		"dev": "tsup src/index.ts --format esm --watch --dts --target es2020",
 		"lint": "prettier . --write",
 		"docs": "typedoc src/index.ts",
@@ -28,5 +29,8 @@
 		"dist/",
 		"LICENCE",
 		"README.md"
-	]
+	],
+	"engines": {
+		"node": ">=14.13.0"
+	}
 }
