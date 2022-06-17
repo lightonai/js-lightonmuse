@@ -26,9 +26,7 @@ or
 npm install lighton-muse
 ```
 
-<!-- TODO: add link to docs -->
-
-The library documentation is available at [???](???.lighton.ai).
+The library documentation is available at [lightonai.github.io/js-lightonmuse/](https://lightonai.github.io/js-lightonmuse/).
 Guides and documentation can be found at the [API docs website](https://muse-docs.lighton.ai).
 
 ## Examples
