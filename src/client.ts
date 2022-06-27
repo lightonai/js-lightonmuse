@@ -53,7 +53,7 @@ export class MuseRequest {
 		endpoint: E,
 		options: ApiRequestOptions<E> | ApiBatchRequestOptions<E>
 	): Promise<Response> {
-		const url = `https://api.lighton.ai/muse/v1/${endpoint}`;
+		const url = `${MUSE_API_BASE_URL}${endpoint}`;
 
 		const response = await fetch(url, {
 			method: 'POST',
@@ -69,3 +69,5 @@ export class MuseRequest {
 		return response;
 	}
 }
+
+export const MUSE_API_BASE_URL = 'https://api.muse.muse.ai/v1/';
