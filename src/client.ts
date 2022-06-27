@@ -70,4 +70,4 @@ export class MuseRequest {
 	}
 }
 
-export const MUSE_API_BASE_URL = 'https://api.muse.muse.ai/v1/';
+export const MUSE_API_BASE_URL = 'https://api.lighton.ai/muse/v1/';

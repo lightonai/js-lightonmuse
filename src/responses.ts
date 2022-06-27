@@ -108,7 +108,7 @@ export interface ApiResponseBadRequest {
 export const isApiResponseBadRequest = (
 	body: unknown
 ): body is ApiResponseBadRequest =>
-	typeof (body as ApiResponseBadRequest).details === 'string';
+	typeof (body as ApiResponseBadRequest)?.details === 'string';
 
 export interface ApiResponseError {
 	request_id: string;
@@ -116,5 +116,5 @@ export interface ApiResponseError {
 }
 
 export const isApiResponseError = (body: unknown): body is ApiResponseError =>
-	typeof (body as ApiResponseError).request_id === 'string' &&
-	typeof (body as ApiResponseError).error_msg === 'string';
+	typeof (body as ApiResponseError)?.request_id === 'string' &&
+	typeof (body as ApiResponseError)?.error_msg === 'string';
