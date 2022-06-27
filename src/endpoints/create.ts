@@ -8,7 +8,8 @@ import {
 export interface ApiCreateParams {
 	/**
 	 * How the model will decide which token to select at each step.
-	 * @default `ApiMode.Nucleus`
+	 *
+	 * Defaults to [`ApiMode.Nucleus`].
 	 */
 	mode?: ApiMode;
 
@@ -17,7 +18,8 @@ export interface ApiCreateParams {
 	 * we recommend a value around 1 for most creative applications, and closer to 0 when a ground truth exists.
 	 *
 	 * ⚠️ Only in `TopK`/`Nucleus` mode.
-	 * @default 1
+	 *
+	 * Defaults to `1`.
 	 */
 	temperature?: number;
 
@@ -25,7 +27,8 @@ export interface ApiCreateParams {
 	 * Total probability mass of the most likely tokens considered when sampling in nucleus mode.
 	 *
 	 * ⚠️ Only in `Nucleus` mode.
-	 * @default 0.9
+	 *
+	 * Defaults to `0.9`.
 	 */
 	p?: number;
 
@@ -33,7 +36,8 @@ export interface ApiCreateParams {
 	 * Number of most likely tokens considered when sampling in top-k mode.
 	 *
 	 * ⚠️ Only in `TopK` mode.
-	 * @default 5
+	 *
+	 * Defaults to `5`.
 	 */
 	k?: number;
 
@@ -43,7 +47,7 @@ export interface ApiCreateParams {
 	 * Extreme values such as -100 will completely forbid a word, while values between 1-5 will make
 	 * the word more likely to appear. We recommend playing around to find a good fit for your use case.
 	 *
-	 * @default null
+	 * Defaults to `undefined`.
 	 */
 	biases?: Record<string, number>;
 
@@ -53,7 +57,7 @@ export interface ApiCreateParams {
 	 * -- use `frequency_penalty` if that's what you want instead. Use values between 0 and 1.
 	 * Values closer to 1 encourage variation of the topics generated.
 	 *
-	 * @default 0
+	 * Defaults to `0`.
 	 */
 	presence_penalty?: number;
 
@@ -63,42 +67,42 @@ export interface ApiCreateParams {
 	 * how often the token already occurs. Use values between 0 and 1. Values closer
 	 * to 1 discourage repetition, especially useful in combination with `biases`.
 	 *
-	 * @default 0
+	 * Defaults to `0`.
 	 */
 	frequency_penalty?: number;
 
 	/**
 	 * Encountering any of these words will halt generation immediately.
 	 *
-	 * @default null
+	 * Defaults to `undefined`.
 	 */
 	stop_words?: string[];
 
 	/**
 	 * The original prompt will be concatenated with the generated text in the returned response.
 	 *
-	 * @default false
+	 * Defaults to `false`.
 	 */
 	concat_prompt?: boolean;
 
 	/**
 	 * Returns the [log-probabilities](https://muse-docs.lighton.ai/home/concepts#likelihood) of the generated tokens.
 	 *
-	 * @default false
+	 * Defaults to `false`.
 	 */
 	return_logprobs?: boolean;
 
 	/**
 	 * Make sampling deterministic by setting a seed used for random number generation. Useful for strictly reproducing Create calls.
 	 *
-	 * @default null
+	 * Defaults to `undefined`.
 	 */
 	seed?: number;
 
 	/**
 	 * Specify a 🤹 Skill to use to perform a specific task or to tailor the generated text.
 	 *
-	 * @default null
+	 * Defaults to `undefined`.
 	 */
 	skill?: ApiSkills;
 }
@@ -112,14 +116,17 @@ export interface ApiCreateOptions {
 
 	/**
 	 * Number of tokens to generate. This can be overridden by a list of stop_words,
-	 * which will cause generation to halt when a word in such list is encountered.
-	 * @default 20
+	 *
+	 * Defaults toll cause generation to halt when a word in such list is encountered.
+	 *
+	 * Defaults to `20`.
 	 */
 	n_tokens?: number;
 
 	/**
 	 * Number of different completion proposals to return for each prompt.
-	 * @default 1
+	 *
+	 * Defaults to `1`.
 	 */
 	n_completions?: number;
 
@@ -129,7 +136,8 @@ export interface ApiCreateOptions {
 	 * summing the log-likelihood over all tokens generated.
 	 *
 	 * ⚠️ Must be smaller than n_completions.
-	 * @default null
+	 *
+	 * Defaults to `undefined`.
 	 */
 	best_of?: number;
 

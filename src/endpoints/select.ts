@@ -20,14 +20,16 @@ export interface ApiSelectOptions {
 	 * to compute the likelihood. The prompt will have the structure `reference` + `conjunction`
 	 * + `candidate`. Finding a good `conjunction` can greatly increase the performance of `select`.
 	 *
-	 * @default ""
+	 *
+	 * Defaults to an empty string.
 	 */
 	conjunction?: string;
 
 	/**
 	 * If `true`, the response will contain a `best` field with the selected choice.
 	 *
-	 * @default true
+	 *
+	 * Defaults to `true`.
 	 */
 	concat_best?: boolean;
 }
