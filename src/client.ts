@@ -31,7 +31,7 @@ export class MuseRequest {
 		const body = await response.json();
 
 		if (response.status !== 200 && isApiResponseBadRequest(body))
-			return { error: new Error(body.details), response: null };
+			return { error: new Error(body.detail), response: null };
 
 		if (isApiResponseError(body)) {
 			return {

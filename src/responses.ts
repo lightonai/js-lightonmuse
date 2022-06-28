@@ -102,13 +102,13 @@ export interface ApiResponseBase<Output> {
 }
 
 export interface ApiResponseBadRequest {
-	details: string;
+	detail: string;
 }
 
 export const isApiResponseBadRequest = (
 	body: unknown
 ): body is ApiResponseBadRequest =>
-	typeof (body as ApiResponseBadRequest)?.details === 'string';
+	typeof (body as ApiResponseBadRequest)?.detail === 'string';
 
 export interface ApiResponseError {
 	request_id: string;
