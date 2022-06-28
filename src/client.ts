@@ -1,23 +1,17 @@
 import fetch, { Response } from 'node-fetch';
 import {
 	ApiBatchRequestOptions,
-	ApiBatchResponse,
 	ApiRequestOptions,
 	ApiResponse,
 } from './endpoints/index.js';
 import { ApiModels, Endpoints } from './requests.js';
 import { isApiResponseBadRequest, isApiResponseError } from './responses.js';
 
-export type MuseResponse<
-	E extends Endpoints,
-	O extends ApiRequestOptions<E> | ApiBatchRequestOptions<E>
-> =
+export type MuseResponse<E extends Endpoints> =
 	| { error: Error; response: null }
 	| {
 			error: null;
-			response: O extends ApiBatchRequestOptions<E>
-				? ApiResponse<E>[]
-				: ApiResponse<E>;
+			response: ApiResponse<E>;
 	  };
 
 export class MuseRequest {
@@ -26,7 +20,7 @@ export class MuseRequest {
 	public async query<
 		E extends Endpoints,
 		O extends ApiRequestOptions<E> | ApiBatchRequestOptions<E>
-	>(model: ApiModels, endpoint: E, options: O): Promise<MuseResponse<E, O>> {
+	>(model: ApiModels, endpoint: E, options: O): Promise<MuseResponse<E>> {
 		const response = await this.raw(model, endpoint, options);
 		const body = await response.json();
 
@@ -41,9 +35,7 @@ export class MuseRequest {
 		}
 
 		return {
-			response: body as O extends ApiBatchRequestOptions<E>
-				? ApiBatchResponse<E>
-				: ApiResponse<E>,
+			response: body as ApiResponse<E>,
 			error: null,
 		};
 	}
