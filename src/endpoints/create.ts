@@ -1,4 +1,4 @@
-import { ApiMode, ApiSkills } from '../requests.js';
+import { ApiModes, ApiSkills } from '../requests.js';
 import {
 	ApiExecutionMetadata,
 	ApiResponseBase,
@@ -6,6 +6,33 @@ import {
 } from '../responses.js';
 
 export interface ApiCreateParams {
+	/**
+	 * Number of tokens to generate. This can be overridden by a list of stop_words,
+	 *
+	 * Defaults toll cause generation to halt when a word in such list is encountered.
+	 *
+	 * Defaults to `20`.
+	 */
+	n_tokens?: number;
+
+	/**
+	 * Number of different completion proposals to return for each prompt.
+	 *
+	 * Defaults to `1`.
+	 */
+	n_completions?: number;
+
+	/**
+	 * Among n_completions, only return the best_of ones.
+	 * Completions are selected according to how likely they are,
+	 * summing the log-likelihood over all tokens generated.
+	 *
+	 * ⚠️ Must be smaller than n_completions.
+	 *
+	 * Defaults to `undefined`.
+	 */
+	best_of?: number;
+
 	/**
 	 * How the model will decide which token to select at each step.
 	 *
@@ -113,33 +140,6 @@ export interface ApiCreateOptions {
 	 * They can be provided either as a single string or as an array of strings for [batch processing](https://muse-docs.lighton.ai/api/specifications/requests#batching).
 	 */
 	text: string | string[];
-
-	/**
-	 * Number of tokens to generate. This can be overridden by a list of stop_words,
-	 *
-	 * Defaults toll cause generation to halt when a word in such list is encountered.
-	 *
-	 * Defaults to `20`.
-	 */
-	n_tokens?: number;
-
-	/**
-	 * Number of different completion proposals to return for each prompt.
-	 *
-	 * Defaults to `1`.
-	 */
-	n_completions?: number;
-
-	/**
-	 * Among n_completions, only return the best_of ones.
-	 * Completions are selected according to how likely they are,
-	 * summing the log-likelihood over all tokens generated.
-	 *
-	 * ⚠️ Must be smaller than n_completions.
-	 *
-	 * Defaults to `undefined`.
-	 */
-	best_of?: number;
 
 	/**
 	 * A set of parameters to control the model output.
