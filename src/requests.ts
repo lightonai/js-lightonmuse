@@ -33,7 +33,7 @@ export enum ApiModes {
 	Nucleus = 'nucleus',
 
 	/**
-	 * `typical`: the model will randomly select a token from the k most likely tokens.
+	 * `typical`: the model will discard high probability tokens with low expected information content.
 	 */
 	Typical = 'typical',
 }
