@@ -13,7 +13,7 @@ export enum Endpoints {
 /**
  * How the model will decide which token to select at each step.
  */
-export enum ApiMode {
+export enum ApiModes {
 	/**
 	 * `greedy`: the model will always select the most likely token. This generation mode
 	 * is deterministic and only suited for applications in which there is a ground truth the
@@ -22,15 +22,20 @@ export enum ApiMode {
 	Greedy = 'greedy',
 
 	/**
+	 * `topk`: the model will only consider the k most likely tokens.
+	 */
+	TopK = 'topk',
+
+	/**
 	 * `nucleus`: the model will only consider the most likely tokens with total
 	 * probability mass p. We recommend this setting for most applications.
 	 */
 	Nucleus = 'nucleus',
 
 	/**
-	 * `topk`: the model will only consider the k most likely tokens.
+	 * `typical`: the model will randomly select a token from the k most likely tokens.
 	 */
-	TopK = 'topk',
+	Typical = 'typical',
 }
 
 export enum ApiModels {

@@ -38,7 +38,7 @@ export interface ApiCreateParams {
 	 *
 	 * Defaults to [`ApiMode.Nucleus`].
 	 */
-	mode?: ApiMode;
+	mode?: ApiModes;
 
 	/**
 	 * How risky will the model be in its choice of tokens. A temperature of 0 corresponds to greedy sampling;
