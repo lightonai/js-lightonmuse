@@ -12,7 +12,8 @@
 		"dev": "tsup src/index.ts --format esm --watch --dts --target es2020",
 		"lint": "prettier . --write",
 		"docs": "typedoc src/index.ts",
-		"tsc": "tsc"
+		"tsc": "tsc",
+		"prepublish": "yarn build"
 	},
 	"dependencies": {
 		"node-fetch": "^3.2.6"
