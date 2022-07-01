@@ -1,10 +1,10 @@
-import fetch, { Response } from 'node-fetch';
 import {
 	ApiBatchRequestOptions,
 	ApiRequestOptions,
 	ApiResponse,
 } from './endpoints/index.js';
 import { ApiModels, Endpoints } from './requests.js';
+import fetch, { Response } from 'node-fetch';
 import { isApiResponseBadRequest, isApiResponseError } from './responses.js';
 
 export type MuseResponse<E extends Endpoints> =
@@ -24,8 +24,9 @@ export class MuseRequest {
 		const response = await this.raw(model, endpoint, options);
 		const body = await response.json();
 
-		if (response.status !== 200 && isApiResponseBadRequest(body))
+		if (response.status !== 200 && isApiResponseBadRequest(body)) {
 			return { error: new Error(body.detail), response: null };
+		}
 
 		if (isApiResponseError(body)) {
 			return {
