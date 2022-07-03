@@ -1,7 +1,7 @@
 /**
  * Every available endpoint of the API.
  */
-export enum Endpoints {
+export enum Endpoint {
 	Create = 'create',
 	Analyse = 'analyse',
 	Embed = 'embed',
@@ -13,7 +13,7 @@ export enum Endpoints {
 /**
  * How the model will decide which token to select at each step.
  */
-export enum ApiModes {
+export enum ApiMode {
 	/**
 	 * `greedy`: the model will always select the most likely token. This generation mode
 	 * is deterministic and only suited for applications in which there is a ground truth the
@@ -38,7 +38,7 @@ export enum ApiModes {
 	Typical = 'typical',
 }
 
-export enum ApiModels {
+export enum ApiModel {
 	OrionFr = 'orion-fr',
 	OrionFrV2 = 'orion-fr-v2',
 	LyraFr = 'lyra-fr',
@@ -49,7 +49,7 @@ export enum ApiModels {
 	AurigaIt = 'auriga-it',
 }
 
-export enum ApiSkills {
+export enum ApiSkill {
 	OrionFrSummarisation = 'orion-fr@summarisation',
 	LyraEnMultitask = 'lyra-en@multitask',
 	AurigaDeZusammenfassung = 'auriga-de@zusammenfassung',

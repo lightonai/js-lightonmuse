@@ -1,4 +1,4 @@
-import { Endpoints } from '../requests.js';
+import { Endpoint } from '../requests.js';
 import { ApiAnalyseOptions, ApiAnalyseResponse } from './analyse.js';
 import { ApiCompareOptions, ApiCompareResponse } from './compare.js';
 import { ApiCreateOptions, ApiCreateResponse } from './create.js';
@@ -9,40 +9,39 @@ import { ApiTokenizeOptions, ApiTokenizeResponse } from './tokenize.js';
 /**
  * The options for a specific endpoint.
  */
-export type ApiRequestOptions<E extends Endpoints> = E extends Endpoints.Create
+export type ApiRequestOptions<E extends Endpoint> = E extends Endpoint.Create
 	? ApiCreateOptions
-	: E extends Endpoints.Analyse
+	: E extends Endpoint.Analyse
 	? ApiAnalyseOptions
-	: E extends Endpoints.Embed
+	: E extends Endpoint.Embed
 	? ApiEmbedOptions
-	: E extends Endpoints.Select
+	: E extends Endpoint.Select
 	? ApiSelectOptions
-	: E extends Endpoints.Compare
+	: E extends Endpoint.Compare
 	? ApiCompareOptions
-	: E extends Endpoints.Tokenize
+	: E extends Endpoint.Tokenize
 	? ApiTokenizeOptions
 	: never;
 
 /**
  * The options for a batch request
  */
-export type ApiBatchRequestOptions<E extends Endpoints> =
-	ApiRequestOptions<E>[];
+export type ApiBatchRequestOptions<E extends Endpoint> = ApiRequestOptions<E>[];
 
 /**
  * The response of the API for a specific endpoint.
  */
-export type ApiResponse<E extends Endpoints> = E extends Endpoints.Create
+export type ApiResponse<E extends Endpoint> = E extends Endpoint.Create
 	? ApiCreateResponse
-	: E extends Endpoints.Analyse
+	: E extends Endpoint.Analyse
 	? ApiAnalyseResponse
-	: E extends Endpoints.Embed
+	: E extends Endpoint.Embed
 	? ApiEmbedResponse
-	: E extends Endpoints.Select
+	: E extends Endpoint.Select
 	? ApiSelectResponse
-	: E extends Endpoints.Compare
+	: E extends Endpoint.Compare
 	? ApiCompareResponse
-	: E extends Endpoints.Tokenize
+	: E extends Endpoint.Tokenize
 	? ApiTokenizeResponse
 	: never;
 

@@ -1,4 +1,4 @@
-import { ApiModes, ApiSkills } from '../requests.js';
+import { ApiMode, ApiSkill } from '../requests.js';
 import {
 	ApiExecutionMetadata,
 	ApiResponseBase,
@@ -38,7 +38,7 @@ export interface ApiCreateParams {
 	 *
 	 * Defaults to [`ApiMode.Nucleus`].
 	 */
-	mode?: ApiModes;
+	mode?: ApiMode;
 
 	/**
 	 * How risky will the model be in its choice of tokens. A temperature of 0 corresponds to greedy sampling;
@@ -131,7 +131,7 @@ export interface ApiCreateParams {
 	 *
 	 * Defaults to `undefined`.
 	 */
-	skill?: ApiSkills;
+	skill?: ApiSkill;
 }
 
 export interface ApiCreateOptions {

@@ -3,11 +3,11 @@ import {
 	ApiRequestOptions,
 	ApiResponse,
 } from './endpoints/index.js';
-import { ApiModels, Endpoints } from './requests.js';
+import { ApiModel, Endpoint } from './requests.js';
 import fetch, { Response } from 'node-fetch';
 import { isApiResponseBadRequest, isApiResponseError } from './responses.js';
 
-export type MuseResponse<E extends Endpoints> =
+export type MuseResponse<E extends Endpoint> =
 	| { error: Error; response: null }
 	| {
 			error: null;
@@ -18,9 +18,9 @@ export class MuseRequest {
 	constructor(private apiKey: string) {}
 
 	public async query<
-		E extends Endpoints,
+		E extends Endpoint,
 		O extends ApiRequestOptions<E> | ApiBatchRequestOptions<E>
-	>(model: ApiModels, endpoint: E, options: O): Promise<MuseResponse<E>> {
+	>(model: ApiModel, endpoint: E, options: O): Promise<MuseResponse<E>> {
 		const response = await this.raw(model, endpoint, options);
 		const body = await response.json();
 
@@ -41,8 +41,8 @@ export class MuseRequest {
 		};
 	}
 
-	public async raw<E extends Endpoints>(
-		model: ApiModels,
+	public async raw<E extends Endpoint>(
+		model: ApiModel,
 		endpoint: E,
 		options: ApiRequestOptions<E> | ApiBatchRequestOptions<E>
 	): Promise<Response> {
