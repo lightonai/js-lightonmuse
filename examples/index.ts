@@ -1,4 +1,4 @@
-import { ApiModels, Endpoints, MuseRequest } from '..';
+import { ApiModel, Endpoint, MuseRequest } from '..';
 
 const MUSE_API_KEY = process.env.MUSE_API_KEY;
 
@@ -9,8 +9,8 @@ if (!MUSE_API_KEY) {
 const client = new MuseRequest(MUSE_API_KEY);
 
 let { response, error } = await client.query(
-	ApiModels.AurigaDe,
-	Endpoints.Create,
+	ApiModel.AurigaDe,
+	Endpoint.Create,
 	{
 		text: 'Hello world!',
 	}
