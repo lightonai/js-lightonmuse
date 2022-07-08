@@ -46,7 +46,7 @@ Using `lighton-muse` is pretty simple, the interface matches the endpoints offer
 You can initialize the client with your token.
 
 ```js
-import { MuseRequest, ApiModels, Endpoints } from 'lighton-muse';
+import { MuseRequest, ApiModel, Endpoint } from 'lighton-muse';
 
 const client = new MuseRequest('<your-api-key>');
 ```
@@ -54,7 +54,7 @@ const client = new MuseRequest('<your-api-key>');
 #### Create
 
 ```js
-let { error, response } = client.query(ApiModels.OrionFrV2, Endpoints.Create, {
+let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Create, {
 	text: 'Hello, world!',
 });
 
@@ -68,7 +68,7 @@ if (error) {
 #### Select
 
 ```js
-let { error, response } = client.query(ApiModels.OrionFrV2, Endpoints.Select, {
+let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Select, {
 	reference: 'Quel nom est correct ?',
 	candidates: ['pain au chocolat', 'chocolatine'],
 });
@@ -83,7 +83,7 @@ if (error) {
 #### Analyse
 
 ```js
-let { error, response } = client.query(ApiModels.OrionFrV2, Endpoints.Analyse, {
+let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Analyse, {
 	text: "Avec `Analyse` on peut toujours trouver les parties plus surprenantes d'une phrase.",
 });
 
@@ -97,7 +97,7 @@ if (error) {
 #### Embed
 
 ```js
-let { error, response } = client.query(ApiModels.LyraEn, Endpoints.Embed, {
+let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Embed, {
 	text: 'This sentence will be transformed in a nice matrix of numbers.',
 });
 
@@ -111,7 +111,7 @@ if (error) {
 #### Compare
 
 ```js
-let { error, response } = client.query(ApiModels.LyraEn, Endpoints.Compare, {
+let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Compare, {
 	reference: 'This is the reference.',
 	candidates: [
 		'This is close to the reference',
@@ -129,7 +129,7 @@ if (error) {
 #### Tokenize
 
 ```js
-let { error, response } = client.query(ApiModels.LyraEn, Endpoints.Tokenize, {
+let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Tokenize, {
 	text: "Let's discover how many tokens is this text",
 });
 
