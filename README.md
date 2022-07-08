@@ -41,7 +41,7 @@ node examples/<example-name>.js
 
 ## Quickstart
 
-Using `lighton-muse` is pretty simple, the interface matches the endpoints offered by the Muse API. The whole library is typed.
+Using `lighton-muse` is pretty simple, the interface matches the endpoints offered by the Muse API. The whole API is typed.
 
 You can initialize the client with your token.
 
@@ -49,9 +49,11 @@ You can initialize the client with your token.
 import { MuseRequest, ApiModel, Endpoint } from 'lighton-muse';
 
 const client = new MuseRequest('<your-api-key>');
+// or
+const client = new MuseRequest('API_KEY', 'Your own API base URL');
 ```
 
-#### Create
+### Create
 
 ```js
 let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Create, {
@@ -65,7 +67,7 @@ if (error) {
 }
 ```
 
-#### Select
+### Select
 
 ```js
 let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Select, {
@@ -80,7 +82,7 @@ if (error) {
 }
 ```
 
-#### Analyse
+### Analyse
 
 ```js
 let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Analyse, {
@@ -94,7 +96,7 @@ if (error) {
 }
 ```
 
-#### Embed
+### Embed
 
 ```js
 let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Embed, {
@@ -108,7 +110,7 @@ if (error) {
 }
 ```
 
-#### Compare
+### Compare
 
 ```js
 let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Compare, {
@@ -126,7 +128,7 @@ if (error) {
 }
 ```
 
-#### Tokenize
+### Tokenize
 
 ```js
 let { error, response } = client.query(ApiModel.LyraEn, Endpoint.Tokenize, {

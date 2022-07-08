@@ -7,6 +7,9 @@ import { ApiModel, Endpoint } from './requests.js';
 import fetch, { Response } from 'node-fetch';
 import { isApiResponseBadRequest, isApiResponseError } from './responses.js';
 
+/**
+ * The response of the [`MuseRequest`] class.
+ */
 export type MuseResponse<E extends Endpoint> =
 	| { error: Error; response: null }
 	| {
@@ -14,8 +17,20 @@ export type MuseResponse<E extends Endpoint> =
 			response: ApiResponse<E>;
 	  };
 
+/**
+ * An optional NodeJS client for making requests to the API.
+ *
+ * You must provide an API key.
+ *
+ * @example
+ * ```ts
+ * const client = new MuseRequest('API_KEY');
+ * // or
+ * const client = new MuseRequest('API_KEY', 'Your own API base URL');
+ * ```
+ */
 export class MuseRequest {
-	constructor(private apiKey: string) {}
+	constructor(private apiKey: string, private apiUrl = MUSE_API_BASE_URL) {}
 
 	public async query<
 		E extends Endpoint,
@@ -46,7 +61,7 @@ export class MuseRequest {
 		endpoint: E,
 		options: ApiRequestOptions<E> | ApiBatchRequestOptions<E>
 	): Promise<Response> {
-		const url = `${MUSE_API_BASE_URL}${endpoint}`;
+		const url = `${this.apiUrl}${endpoint}`;
 
 		const response = await fetch(url, {
 			method: 'POST',
