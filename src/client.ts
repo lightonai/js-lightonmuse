@@ -18,6 +18,25 @@ export type MuseResponse<E extends Endpoint> =
 	  };
 
 /**
+ * The [`MuseRequest`] Error class.
+ */
+class MuseApiError extends Error {
+	constructor(message: string, public requestId?: string) {
+		super(message);
+
+		this.name = 'MuseApiError';
+	}
+
+	toString() {
+		if (this.requestId) {
+			return `MuseApiError: ${this.message} (requestId: ${this.requestId})`;
+		}
+
+		return `MuseApiError: ${this.message}`;
+	}
+}
+
+/**
  * An optional NodeJS client for making requests to the API.
  *
  * You must provide an API key.
@@ -40,12 +59,12 @@ export class MuseRequest {
 		const body = await response.json();
 
 		if (response.status !== 200 && isApiResponseBadRequest(body)) {
-			return { error: new Error(body.detail), response: null };
+			return { error: new MuseApiError(body.detail), response: null };
 		}
 
 		if (isApiResponseError(body)) {
 			return {
-				error: new Error(`${body.request_id} - ${body.error_msg}`),
+				error: new MuseApiError(body.error_msg, body.request_id),
 				response: null,
 			};
 		}
