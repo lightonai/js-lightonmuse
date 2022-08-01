@@ -56,7 +56,7 @@ const client = new MuseRequest('API_KEY', 'Your own API base URL');
 ### Create
 
 ```js
-let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Create, {
+let { error, response } = client.query(ApiModel.OrionFr, Endpoint.Create, {
 	text: 'Hello, world!',
 });
 
@@ -70,7 +70,7 @@ if (error) {
 ### Select
 
 ```js
-let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Select, {
+let { error, response } = client.query(ApiModel.OrionFr, Endpoint.Select, {
 	reference: 'Quel nom est correct ?',
 	candidates: ['pain au chocolat', 'chocolatine'],
 });
@@ -85,7 +85,7 @@ if (error) {
 ### Analyse
 
 ```js
-let { error, response } = client.query(ApiModel.OrionFrV2, Endpoint.Analyse, {
+let { error, response } = client.query(ApiModel.OrionFr, Endpoint.Analyse, {
 	text: "Avec `Analyse` on peut toujours trouver les parties plus surprenantes d'une phrase.",
 });
 
