@@ -8,7 +8,7 @@ export interface ApiCompareOptions {
 	/**
 	 * The input(s) that are compared to the reference and ranked based on similarity.
 	 */
-	candidates: string;
+	candidates: string[];
 }
 
 export interface ApiCompareSimilarities {
